@@ -10,13 +10,9 @@
   "dependencies": {
     "bulma": "^0.7.4",
     "core-js": "^2.6.5",
-    "flickity": "^2.2.0",
-    "jquery": "^3.4.1",
     "vue": "^2.6.10",
     "vue-awesome": "^3.5.2",
     "vue-carousel": "^0.18.0",
-    "vue-flickity": "^1.1.2",
-    "vue-images-loaded": "^1.1.2",
     "vue-router": "^3.0.6"
   },
   "devDependencies": {

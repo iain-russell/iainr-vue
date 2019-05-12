@@ -60,88 +60,92 @@
           </h3>
 
           <!-- guitars -->
-
-          <div
-            class="modal modal-fx-normal"
-            id="guitar-modal"
-            :class="[{ 'is-active': guitarModal }]"
-          >
-            <div class="modal-background"></div>
-            <div class="modal-content">
-              <carousel :perPage="1"
-              :paginationEnabled="false">
-                <slide v-for="image in images.guitars">
-                  <div class="slide-cell">
-                  <figure class="image is-square">
-                    <img :src="image.src" />
-                  </figure>
-                </div>
-                </slide>
-              </carousel>
+          <transition name="fade">
+            <div
+              class="modal modal-fx-normal"
+              id="guitar-modal"
+              :class="[{ 'is-active': guitarModal }]"
+              v-if="guitarModal"
+            >
+              <div class="modal-background"></div>
+              <div class="modal-content">
+                <carousel :perPage="1" :paginationEnabled="true">
+                  <slide v-for="image in images.guitars">
+                    <div class="slide-cell">
+                      <figure class="image is-square">
+                        <img :src="image.src" />
+                      </figure>
+                    </div>
+                  </slide>
+                </carousel>
+              </div>
+              <button
+                class="modal-close is-large"
+                aria-label="close"
+                @click="closeModal()"
+              ></button>
             </div>
-            <button
-              class="modal-close is-large"
-              aria-label="close"
-              @click="closeModal()"
-            ></button>
-          </div>
+          </transition>
 
           <!-- end guitars -->
 
           <!-- eurorack  -->
-          <div
-            class="modal modal-fx-normal"
-            id="eurorack-modal"
-            :class="[{ 'is-active': eurorackModal }]"
-          >
-            <div class="modal-background"></div>
-            <div class="modal-content">
-              <carousel :perPage="1"
-              :paginationEnabled="false">
-                <slide v-for="image in images.eurorack">
-                  <div class="slide-cell">
-                  <figure class="image is-square">
-                    <img :src="image.src" />
-                  </figure>
-                </div>
-                </slide>
-              </carousel>
+          <transition name="fade">
+            <div
+              class="modal modal-fx-normal"
+              id="eurorack-modal"
+              :class="[{ 'is-active': eurorackModal }]"
+              v-if="eurorackModal"
+            >
+              <div class="modal-background"></div>
+              <div class="modal-content">
+                <carousel :perPage="1" :paginationEnabled="true">
+                  <slide v-for="image in images.eurorack">
+                    <div class="slide-cell">
+                      <figure class="image is-square">
+                        <img :src="image.src" />
+                      </figure>
+                    </div>
+                  </slide>
+                </carousel>
+              </div>
+              <button
+                class="modal-close is-large"
+                aria-label="close"
+                @click="closeModal()"
+              ></button>
             </div>
-            <button
-              class="modal-close is-large"
-              aria-label="close"
-              @click="closeModal()"
-            ></button>
-          </div>
+          </transition>
 
           <!-- end eurorack -->
 
           <!-- furniture -->
-
-          <div
-            class="modal modal-fx-normal"
-            id="furniture-modal"
-            :class="[{ 'is-active': furnitureModal }]"
-          >
-            <div class="modal-background"></div>
-            <div class="modal-content">
-              <carousel :perPage="1"
-              :paginationEnabled="false">
-                <slide v-for="image in images.furniture">
-                  <div class="slide-cell">
-                  <figure class="image is-square">
-                    <img :src="image.src" />
-                  </figure>
-                </div>
-                </slide>
-              </carousel>
+          <transition name="fade">
+            <div
+              class="modal modal-fx-normal"
+              id="furniture-modal"
+              :class="[{ 'is-active': furnitureModal }]"
+              v-if="furnitureModal"
+            >
+              <div class="modal-background"></div>
+              <div class="modal-content">
+                <carousel :perPage="1" :paginationEnabled="true">
+                  <slide v-for="image in images.furniture">
+                    <div class="slide-cell">
+                      <figure class="image is-square">
+                        <img :src="image.src" />
+                      </figure>
+                    </div>
+                  </slide>
+                </carousel>
+              </div>
+              <button
+                class="modal-close is-large"
+                aria-label="close"
+                @click="closeModal()"
+              ></button>
             </div>
-            <button
-              class="modal-close is-large"
-              aria-label="close"
-              @click="closeModal()"
-            ></button>
-          </div>
+          </transition>
 
           <!-- end furniture -->
         </div>
@@ -165,6 +169,8 @@
           <br />
           <h3 class="links-mini fade-in">
             <a href="https://github.com/iain-russell">
+              <icon name="brands/github"></icon>
+
               <i class="fab fa-github"></i>
               Github</a
             >
@@ -174,17 +180,16 @@
             href="https://www.linkedin.com/in/iainrussell1989/"
           >
             <a href="https://www.linkedin.com/in/iainrussell1989/">
-              <i class="fab fa-linkedin-in"></i>
-              LinkedIn</a
-            >
+              <icon name="brands/linkedin-in"></icon> LinkedIn
+            </a>
           </h3>
           <h3 class="links-mini fade-in">
-            <a href="mailto:info@iainru.com"
-              ><i class="fas fa-envelope"></i> info@iainru.com</a
-            >
+            <a href="mailto:info@iainru.com">
+              <icon name="envelope"></icon> info@iainru.com
+            </a>
           </h3>
           <h3 class="links-mini fade-in">
-            <a href=""><i class="fas fa-file-alt"></i> cv.pdf</a>
+            <a><icon name="file-alt"></icon> cv.pdf</a>
           </h3>
         </div>
       </div>
@@ -202,23 +207,19 @@
 <script>
 import { router } from "../main.js";
 import Icon from "vue-awesome/components/Icon";
-import Vue from "vue";
 import { Carousel, Slide } from "vue-carousel";
-
-import Flickity from "vue-flickity";
 
 export default {
   name: "Home",
   components: {
     Icon,
-    Flickity,
     Carousel,
     Slide
   },
   data() {
     return {
-      background: "#0c0c0c",
-      fontColor: "#fff",
+      background: "#fff",
+      fontColor: "#000",
       homeShowing: true,
       projectsShowing: false,
       contactShowing: false,
@@ -280,7 +281,45 @@ export default {
     };
   },
   created() {},
-  mounted() {},
+  mounted() {
+    setTimeout(() => {
+      this.fadeToHome();
+    }, 10);
+    document.addEventListener("click", e => {
+      if (e.target.className === "modal-background") {
+        this.closeModal();
+      }
+    });
+    document.addEventListener("keyup", e => {
+      if (e.keyCode === 27) {
+        this.closeModal();
+      } else if (this.homeShowing && (e.keyCode === 37 || e.keyCode === 38)) {
+        this.fadeToContact();
+      } else if (this.homeShowing && (e.keyCode === 39 || e.keyCode === 40)) {
+        this.fadeToProjects();
+      } else if (
+        this.projectsShowing &&
+        (e.keyCode === 37 || e.keyCode === 38)
+      ) {
+        this.fadeToHome();
+      } else if (
+        this.projectsShowing &&
+        (e.keyCode === 39 || e.keyCode === 40)
+      ) {
+        this.fadeToContact();
+      } else if (
+        this.contactShowing &&
+        (e.keyCode === 37 || e.keyCode === 38)
+      ) {
+        this.fadeToProjects();
+      } else if (
+        this.contactShowing &&
+        (e.keyCode === 39 || e.keyCode === 40)
+      ) {
+        this.fadeToHome();
+      }
+    });
+  },
 
   methods: {
     fadeToHome() {
@@ -318,6 +357,11 @@ export default {
       this.eurorackModal = false;
       this.furnitureModal = false;
     },
+    mapKeys() {
+      document.addEventListener("keyup", e => {
+        console.log(e);
+      });
+    }
   }
 };
 </script>
