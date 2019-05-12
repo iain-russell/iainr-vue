@@ -7,16 +7,16 @@
     <section class="hero is-fullheight" id="index" v-if="homeShowing">
       <div class="hero-body" id="home">
         <div class="container hero-body-container">
-          <h1 class="main-text fade-in">
+          <h1 class="main-text fade-in slide-in-r-main">
             > iainru
           </h1>
-          <h1 class="main-text fade-in">
+          <h1 class="main-text fade-in slide-in-r-main">
             My name is Iain Russell,
           </h1>
-          <h1 class="main-text fade-in">
+          <h1 class="main-text fade-in slide-in-r-main">
             I am a creator and full stack web developer,
           </h1>
-          <h1 class="main-text fade-in">
+          <h1 class="main-text fade-in slide-in-r-main">
             specializing in Javascript and Python.
           </h1>
         </div>
@@ -167,29 +167,27 @@
             Send me a message and say hi!
           </h1>
           <br />
-          <h3 class="links-mini fade-in">
+          <h3 class="links-mini fade-in slide-in-r-main">
             <a href="https://github.com/iain-russell">
-              <icon name="brands/github"></icon>
-
-              <i class="fab fa-github"></i>
+              <icon name="brands/github" class="fa-icon-contact"></icon>
               Github</a
             >
           </h3>
           <h3
-            class="links-mini fade-in"
+            class="links-mini fade-in slide-in-r-main"
             href="https://www.linkedin.com/in/iainrussell1989/"
           >
             <a href="https://www.linkedin.com/in/iainrussell1989/">
-              <icon name="brands/linkedin-in"></icon> LinkedIn
+              <icon name="brands/linkedin-in" class="fa-icon-contact"></icon> LinkedIn
             </a>
           </h3>
-          <h3 class="links-mini fade-in">
+          <h3 class="links-mini fade-in slide-in-r-main">
             <a href="mailto:info@iainru.com">
-              <icon name="envelope"></icon> info@iainru.com
+              <icon name="envelope" class="fa-icon-contact" id="fa-icon-envelope"></icon> info@iainru.com
             </a>
           </h3>
-          <h3 class="links-mini fade-in">
-            <a><icon name="file-alt"></icon> cv.pdf</a>
+          <h3 class="links-mini fade-in slide-in-r-main">
+            <a><icon name="file-alt" class="fa-icon-contact" id="fa-icon-file-alt" ></icon> cv.pdf</a>
           </h3>
         </div>
       </div>
@@ -226,6 +224,7 @@ export default {
       guitarModal: false,
       eurorackModal: false,
       furnitureModal: false,
+      didScroll: false,
       images: {
         guitars: [
           {
@@ -285,12 +284,7 @@ export default {
     setTimeout(() => {
       this.fadeToHome();
     }, 10);
-    document.addEventListener("click", e => {
-      if (e.target.className === "modal-background") {
-        this.closeModal();
-      }
-    });
-    document.addEventListener("keyup", e => {
+    window.addEventListener("keyup", e => {
       if (e.keyCode === 27) {
         this.closeModal();
       } else if (this.homeShowing && (e.keyCode === 37 || e.keyCode === 38)) {
@@ -319,8 +313,42 @@ export default {
         this.fadeToHome();
       }
     });
+    window.addEventListener("wheel", e => {
+      if (!this.didScroll) {
+        if (this.homeShowing && (e.deltaY < -50 || e.deltaX > 50)) {
+          this.didScroll = true;
+          this.fadeToContact();
+        } else if (this.homeShowing && (e.deltaY > 50 || e.deltaX < -50)) {
+          this.didScroll = true;
+          this.fadeToProjects();
+        } else if (this.projectsShowing && (e.deltaY < -50 || e.deltaX > 50)) {
+          this.didScroll = true;
+          this.fadeToHome();
+        } else if (this.projectsShowing && (e.deltaY > 50 || e.deltaX < -50)) {
+          this.didScroll = true;
+          this.fadeToContact();
+        } else if (this.contactShowing && (e.deltaY < -50 || e.deltaX > 50)) {
+          this.didScroll = true;
+          this.fadeToProjects();
+        } else if (this.contactShowing && (e.deltaY > 50 || e.deltaX < -50)) {
+          this.didScroll = true;
+          this.fadeToHome();
+        }
+      }
+    });
+    window.addEventListener("click", e => {
+      if (e.target.className === "modal-background") {
+        this.closeModal();
+      }
+    });
   },
-
+  watch: {
+    didScroll() {
+      setTimeout(() => {
+        this.didScroll = false;
+      }, 1500);
+    }
+  },
   methods: {
     fadeToHome() {
       this.homeShowing = true;
@@ -356,11 +384,6 @@ export default {
       this.guitarModal = false;
       this.eurorackModal = false;
       this.furnitureModal = false;
-    },
-    mapKeys() {
-      document.addEventListener("keyup", e => {
-        console.log(e);
-      });
     }
   }
 };
@@ -368,9 +391,9 @@ export default {
 
 <style lang="css" scoped>
 #main-section {
-  transition: background-color 1s linear;
-  -moz-transition: background-color 1s linear;
-  -o-transition: background-color 1s linear;
-  -webkit-transition: background-color 1s linear;
+  transition: background-color 0.8s linear;
+  -moz-transition: background-color 0.8s linear;
+  -o-transition: background-color 0.8s linear;
+  -webkit-transition: background-color 0.8s linear;
 }
 </style>

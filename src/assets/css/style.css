@@ -37,6 +37,22 @@
   max-width: 100%;
   max-height: 100%;
 }
+.fa-icon-contact {
+  width: auto;
+  height: 1em;
+  /* to make this work in Safari */
+  max-width: 100%;
+  max-height: 100%;
+  position: relative;
+  top: 1px;
+  padding-right: 2px;
+}
+#fa-icon-envelope {
+  top: 2px;
+}
+#fa-icon-file-alt {
+  padding-right: 4px;
+}
 
 /* nav arrow  */
 
@@ -107,40 +123,11 @@
 }
 .VueCarousel-dot {
   background-color: #000 !important;
+  outline: none !important;
 }
 .VueCarousel-dot--active {
-  background-color: #DEDEDE !important;
-}
-
-.flickity-enabled {
-  position: static;
-}
-
-.flickity-viewport {
-  /* display: flex; */
-  /* align-items: center; */
-}
-
-/* no circle */
-.flickity-button {
-  background: transparent;
-  transition: all 0.2s;
-}
-/* big previous & next buttons */
-.flickity-prev-next-button {
-  width: 50px;
-  height: 50px;
-}
-/* icon color */
-.flickity-button-icon {
-  fill: white;
-}
-/* hide disabled button */
-.flickity-button:disabled {
-  display: none;
-}
-.flickity-button:hover {
-  background: transparent;
+  background-color: #dedede !important;
+  outline: none !important;
 }
 
 /* animations */
@@ -211,6 +198,60 @@
   0% {
     -webkit-transform: translateX(50px);
     transform: translateX(50px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+.slide-in-r-main {
+  -webkit-animation: slide-in-r-main 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  animation: slide-in-r-main 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+.slide-in-r-main:nth-child(1) {
+  -webkit-animation-delay: 0s;
+}
+.slide-in-r-main:nth-child(2) {
+  -webkit-animation-delay: 0.15s;
+}
+.slide-in-r-main:nth-child(3) {
+  -webkit-animation-delay: 0.3s;
+}
+.slide-in-r-main:nth-child(4) {
+  -webkit-animation-delay: 0.45s;
+}
+.slide-in-r-main:nth-child(5) {
+  -webkit-animation-delay: 0.6s;
+}
+.slide-in-r-main:nth-child(6) {
+  -webkit-animation-delay: 0.75s;
+}
+.slide-in-r-main:nth-child(7) {
+  -webkit-animation-delay: 0.9s;
+}
+.slide-in-r-main:nth-child(8) {
+  -webkit-animation-delay: 1.05s;
+}
+
+@-webkit-keyframes slide-in-r-main {
+  0% {
+    -webkit-transform: translateX(15px);
+    transform: translateX(15px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+@keyframes slide-in-r-main {
+  0% {
+    -webkit-transform: translateX(15px);
+    transform: translateX(15px);
     opacity: 0;
   }
   100% {
