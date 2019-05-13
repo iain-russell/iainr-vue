@@ -192,7 +192,7 @@
             </a>
           </h3>
           <h3 class="links-mini fade-in slide-in-r-main">
-            <a href="mailto:info@iainru.com">
+            <a href="mailto:info@iainr.dev">
               <icon
                 name="envelope"
                 class="fa-icon-contact"
