@@ -370,7 +370,7 @@ export default {
       if (this.projectsIsLoaded === false) {
         setTimeout(() => {
           this.projectsIsLoaded = true;
-        }, 700);
+        }, 1000);
       }
     }
   },

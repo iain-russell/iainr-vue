@@ -3,6 +3,9 @@
   font-family: Cardo;
   line-height: 1.5em;
 }
+.main-text:hover  a{
+  color: #fff;
+}
 .projects-header {
   font-family: "Titillium Web", sans-serif;
   font-size: 12px;
