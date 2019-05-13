@@ -8,7 +8,7 @@
       <div class="hero-body" id="home">
         <div class="container hero-body-container">
           <h1 class="main-text fade-in slide-in-r-main">
-            > iainru
+            > iainr.dev
           </h1>
           <h1 class="main-text fade-in slide-in-r-main">
             My name is Iain Russell,
@@ -37,23 +37,32 @@
         <div class="container hero-body-container fade-in">
           <h1 class="projects-header slide-in-r">SELECTED WORKS</h1>
 
-          <h3 class="main-text each-move slide-in-r">
+          <h3
+            class="main-text each-move"
+            :class="[{ 'slide-in-r': !projectsIsLoaded }]"
+          >
             <a class="underline" href="http://www.coinsushi.com">CoinSushi</a>
           </h3>
 
-          <h3 class="main-text each-move slide-in-r" @click="openGuitarModal()">
+          <h3
+            class="main-text each-move"
+            :class="[{ 'slide-in-r': !projectsIsLoaded }]"
+            @click="openGuitarModal()"
+          >
             <a class="underline">Guitars</a>
           </h3>
 
           <h3
-            class="main-text each-move slide-in-r"
+            class="main-text each-move"
+            :class="[{ 'slide-in-r': !projectsIsLoaded }]"
             @click="openEurorackModal()"
           >
             <a class="underline">Eurorack</a>
           </h3>
 
           <h3
-            class="main-text each-move slide-in-r"
+            class="main-text each-move"
+            :class="[{ 'slide-in-r': !projectsIsLoaded }]"
             @click="openFurnitureModal()"
           >
             <a class="underline">Furniture</a>
@@ -70,7 +79,7 @@
               <div class="modal-background"></div>
               <div class="modal-content">
                 <carousel :perPage="1" :paginationEnabled="true">
-                  <slide v-for="image in images.guitars">
+                  <slide v-for="image in images.guitars" :key="image.src">
                     <div class="slide-cell">
                       <figure class="image is-square">
                         <img :src="image.src" />
@@ -100,7 +109,7 @@
               <div class="modal-background"></div>
               <div class="modal-content">
                 <carousel :perPage="1" :paginationEnabled="true">
-                  <slide v-for="image in images.eurorack">
+                  <slide v-for="image in images.eurorack" :key="image.src">
                     <div class="slide-cell">
                       <figure class="image is-square">
                         <img :src="image.src" />
@@ -130,7 +139,7 @@
               <div class="modal-background"></div>
               <div class="modal-content">
                 <carousel :perPage="1" :paginationEnabled="true">
-                  <slide v-for="image in images.furniture">
+                  <slide v-for="image in images.furniture" :key="image.src">
                     <div class="slide-cell">
                       <figure class="image is-square">
                         <img :src="image.src" />
@@ -178,16 +187,29 @@
             href="https://www.linkedin.com/in/iainrussell1989/"
           >
             <a href="https://www.linkedin.com/in/iainrussell1989/">
-              <icon name="brands/linkedin-in" class="fa-icon-contact"></icon> LinkedIn
+              <icon name="brands/linkedin-in" class="fa-icon-contact"></icon>
+              LinkedIn
             </a>
           </h3>
           <h3 class="links-mini fade-in slide-in-r-main">
             <a href="mailto:info@iainru.com">
-              <icon name="envelope" class="fa-icon-contact" id="fa-icon-envelope"></icon> info@iainru.com
+              <icon
+                name="envelope"
+                class="fa-icon-contact"
+                id="fa-icon-envelope"
+              ></icon>
+              info@iainr.dev
             </a>
           </h3>
           <h3 class="links-mini fade-in slide-in-r-main">
-            <a><icon name="file-alt" class="fa-icon-contact" id="fa-icon-file-alt" ></icon> cv.pdf</a>
+            <a
+              ><icon
+                name="file-alt"
+                class="fa-icon-contact"
+                id="fa-icon-file-alt"
+              ></icon>
+              cv.pdf</a
+            >
           </h3>
         </div>
       </div>
@@ -203,7 +225,6 @@
 </template>
 
 <script>
-import { router } from "../main.js";
 import Icon from "vue-awesome/components/Icon";
 import { Carousel, Slide } from "vue-carousel";
 
@@ -225,6 +246,7 @@ export default {
       eurorackModal: false,
       furnitureModal: false,
       didScroll: false,
+      projectsIsLoaded: true,
       images: {
         guitars: [
           {
@@ -260,10 +282,6 @@ export default {
           {
             src:
               "https://s3.eu-west-2.amazonaws.com/www.iainr.dev/static/images/6u2.jpg"
-          },
-          {
-            src:
-              "https://s3.eu-west-2.amazonaws.com/www.iainr.dev/static/images/12u2.jpg"
           }
         ],
         furniture: [
@@ -347,6 +365,13 @@ export default {
       setTimeout(() => {
         this.didScroll = false;
       }, 1500);
+    },
+    projectsIsLoaded() {
+      if (this.projectsIsLoaded === false) {
+        setTimeout(() => {
+          this.projectsIsLoaded = true;
+        }, 700);
+      }
     }
   },
   methods: {
@@ -356,6 +381,7 @@ export default {
       this.contactShowing = false;
       this.background = "#0c0c0c";
       this.fontColor = "#fff";
+      this.projectsIsLoaded = true;
     },
     fadeToProjects() {
       this.homeShowing = false;
@@ -363,6 +389,7 @@ export default {
       this.contactShowing = false;
       this.background = "#00a0a0";
       this.fontColor = "#fff";
+      this.projectsIsLoaded = false;
     },
     fadeToContact() {
       this.homeShowing = false;
@@ -370,6 +397,7 @@ export default {
       this.contactShowing = true;
       this.background = "#fff";
       this.fontColor = "#000";
+      this.projectsIsLoaded = true;
     },
     openGuitarModal() {
       this.guitarModal = true;
