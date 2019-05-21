@@ -47,6 +47,13 @@
           <h3
             class="main-text each-move"
             :class="[{ 'slide-in-r': !projectsIsLoaded }]"
+          >
+            <a class="underline" href="http://www.nonstagram.com">Nonstagram</a>
+          </h3>
+
+          <h3
+            class="main-text each-move"
+            :class="[{ 'slide-in-r': !projectsIsLoaded }]"
             @click="openGuitarModal()"
           >
             <a class="underline">Guitars</a>
